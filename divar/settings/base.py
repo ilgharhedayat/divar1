@@ -22,6 +22,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # third
+    'mptt',
+
+    # custom
+    'categories.apps.CategoriesConfig',
+    'wantads.apps.wantadsConfig',
+
 ]
 
 MIDDLEWARE = [
