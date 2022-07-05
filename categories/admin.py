@@ -1,6 +1,6 @@
 from django.contrib import admin
-from mptt.admin import DraggableMPTTAdmin
-from mptt.admin import MPTTModelAdmin
+from mptt.admin import DraggableMPTTAdmin, MPTTModelAdmin
+
 from .models import Category
 
 

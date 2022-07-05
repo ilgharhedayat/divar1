@@ -1,9 +1,8 @@
-from django.urls import path, include
+from django.urls import include, path
+
 from wantads.api.urls import urlpatterns
+
 from .views import home
 
-urlpatterns = [
-    path('', home),
-    path('api/', include(urlpatterns))
-
-]
+app_name = "want_ad"
+urlpatterns = [path("", home), path("api/", include(urlpatterns))]

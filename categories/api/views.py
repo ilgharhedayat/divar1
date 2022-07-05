@@ -1,10 +1,9 @@
-from .serializers import CategorySerializer
-from ..models import Category
 from django.shortcuts import get_object_or_404
-from rest_framework import response, status
-from rest_framework import generics
-from .serializers import CategorySerializer
+from rest_framework import generics, response, status
 from rest_framework.response import Response
+
+from ..models import Category
+from .serializers import CategorySerializer
 
 
 class CategoryApiView(generics.GenericAPIView):
@@ -12,12 +11,13 @@ class CategoryApiView(generics.GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         # try:
-        category_list = Category.objects.filter(parent=None)
+        # category_list = Category.objects.filter(parent=None)
+        category_list = Category.objects.all()
         serializer = self.serializer_class(category_list, many=True)
         context = {
-            'is_done': True,
-            'message': 'لیست دسته بندی ها',
-            'data': serializer.data
+            "is_done": True,
+            "message": "لیست دسته بندی ها",
+            "data": serializer.data,
         }
         return Response(data=context)
 
@@ -27,6 +27,7 @@ class CategoryApiView(generics.GenericAPIView):
     #         'message': 'خطا دز انجام عملیات'
     #     }
     #     return Response(data=context)
+
 
 #
 # class CategoryWantApiView(generics.GenericAPIView):

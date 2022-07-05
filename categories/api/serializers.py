@@ -1,6 +1,6 @@
-from ..models import Category
-
 from rest_framework import serializers
+
+from ..models import Category
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -8,10 +8,23 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ('id', 'title', 'parent', 'children',)
+        fields = (
+            "id",
+            "name",
+            "parent",
+            "children",
+        )
 
     def get_children(self, obj):
         return CategorySerializer(obj.children.all(), many=True).data
+
+    # def get_children(self, obj):
+    #     return CategorySerializer(obj.get_ancestors(ascending=False, include_self=False), many=True).data
+    #
+    # def get_children(self, obj):
+    #     return CategorySerializer(obj.get_descendants(include_self=False), many=True).data
+    # def get_children(self, obj):
+    #     return CategorySerializer(obj.get_root(), many=True).data
 
 
 class CategoryWantSerializer(CategorySerializer):
@@ -20,6 +33,7 @@ class CategoryWantSerializer(CategorySerializer):
     class Meta(CategorySerializer.Meta):
         model = CategorySerializer.Meta.model
         fields = CategorySerializer.fields
+
     #
     # def get_wants(self, obj):
     #

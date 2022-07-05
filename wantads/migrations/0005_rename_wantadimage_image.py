@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wantads', '0004_message_saved'),
+        ("wantads", "0004_message_saved"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='WantAdImage',
-            new_name='Image',
+            old_name="WantAdImage",
+            new_name="Image",
         ),
     ]
