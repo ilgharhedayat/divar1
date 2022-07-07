@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     # custom
     "categories.apps.CategoriesConfig",
     "wantads.apps.WantadsConfig",
+    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,5 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 1,
 }
+
+AUTH_USER_MODEL = 'accounts.User'
