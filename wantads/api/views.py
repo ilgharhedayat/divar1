@@ -97,11 +97,12 @@ class WantAdRetrieveAPIView(generics.GenericAPIView):
 
 
 class BookmarkApiView(generics.GenericAPIView):
-    serializer_class = BookmarkSerializer
-
     def get(self, request, *args, **kwargs):
-        queryset = request.user.wantsads_bookmark.all()
-        serializer = self.serializer_class(instance=queryset, many=True)
+        bookmark_list = request.user.wantads_bookmark.all()
+        want_list = WantAd.objects.filter(id__in=bookmark_list)
+        serializer = WandAdSerializers(
+            instance=want_list, many=True, context={"request": request}
+        )
         context = {
             "is_done": True,
             "message": "bookmark های کاربر",
@@ -110,7 +111,7 @@ class BookmarkApiView(generics.GenericAPIView):
         return Response(data=context, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
+        serializer = BookmarkSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
             context = {
@@ -131,7 +132,7 @@ class NoteApiView(generics.GenericAPIView):
     serializer_class = NoteSerializer
 
     def get(self, request, *args, **kwargs):
-        queryset = request.user.wantsads_note.all()
+        queryset = request.user.wantads_note.all()
         serializer = self.serializer_class(instance=queryset, many=True)
         context = {
             "is_done": True,
@@ -142,9 +143,7 @@ class NoteApiView(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        note = Note.objects.filter(
-            user=request.user.id, want=serializer.validated_data["want"]
-        )
+        note = Note.objects.filter(user=request.user.id, want=serializer["want"])
         if note.exists():
             serializer = self.serializer_class(
                 data=request.data, instance=note, partial=True

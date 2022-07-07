@@ -53,10 +53,12 @@ class WandAdSerializers(serializers.ModelSerializer):
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
-        fields = ("user", "message", "want")
+        fields = ("user", "text", "want")
+        read_only_fields = ("user",)
 
 
 class BookmarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
         fields = ("user", "want")
+        read_only_fields = ("user",)
