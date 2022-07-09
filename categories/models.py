@@ -19,3 +19,7 @@ class Category(MPTTModel):
 
     def __str__(self):
         return self.name
+
+    @property
+    def children_count(self):
+        return self.get_descendant_count()

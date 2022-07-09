@@ -21,14 +21,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
     # third
     "mptt",
     "rest_framework",
     "rest_framework.authtoken",
+    "braces",
     # custom
     "categories.apps.CategoriesConfig",
     "wantads.apps.WantadsConfig",
     "accounts.apps.AccountsConfig",
+    "config.apps.ConfigConfig",
 ]
 
 MIDDLEWARE = [
@@ -109,10 +112,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [
+    BASE_DIR / "assets",
+]
 
-MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media/"
+STATIC_ROOT = BASE_DIR / "static_cdn" / "static"
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "static_cdn" / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -127,4 +135,4 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 1,
 }
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = "accounts.User"

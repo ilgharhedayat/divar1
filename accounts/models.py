@@ -1,15 +1,15 @@
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from .managers import UserManager
+from django.db import models
 
+from .managers import UserManager
 
 # Create your models here.
 
+
 class User(AbstractBaseUser, PermissionsMixin):
-    phone_number = models.CharField(max_length=11,unique=True)
+    phone_number = models.CharField(max_length=11, unique=True)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-
 
     USERNAME_FIELD = "phone_number"
 
@@ -27,3 +27,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class OtpCode(models.Model):
+    phone_number = models.CharField(max_length=11)
+    code = models.CharField(max_length=6)

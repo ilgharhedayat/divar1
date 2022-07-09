@@ -1,7 +1,10 @@
 from django.contrib import admin
-from .models import User
 from django.contrib.auth.admin import UserAdmin as BaseAdmin
-from .forms import CreationForm, ChangeForm
+
+from .forms import ChangeForm, CreationForm
+from .models import OtpCode, User
+
+admin.site.register(OtpCode)
 
 
 # Register your models here.
