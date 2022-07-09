@@ -47,7 +47,7 @@ class VerifyApiView(GenericAPIView):
                 serializer.validated_data["phone_number"],
                 serializer.validated_data["code"],
             )
-            otp_obj = OtpCode.objects.filter(phone_number=phone_number)
+            otp_obj = OtpCode.objects.filter(phone_number=phone_number,code=code)
             if otp_obj.code == str(code):
                 try:
                     user_obj = user.objects.get(phone_number=phone_number)
