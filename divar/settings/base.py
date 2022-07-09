@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     "mptt",
     "rest_framework",
     "rest_framework.authtoken",
+    "silk",
+    "debug_toolbar",
     "braces",
     # custom
     "categories.apps.CategoriesConfig",
@@ -42,6 +44,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
+    
+    "silk.middleware.SilkyMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "divar.urls"
@@ -126,6 +132,12 @@ MEDIA_ROOT = BASE_DIR / "static_cdn" / "media"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
