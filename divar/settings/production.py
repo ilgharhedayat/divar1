@@ -11,3 +11,4 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+ROOT_URLCONF = "divar.urls"
