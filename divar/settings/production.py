@@ -6,7 +6,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "postgres",
         "USER": "postgres",
-        "PASSWORD": "ZnQhsP1JWGrzp3WCkmpcU9lLxiLlrmQq",
+        "PASSWORD": "nbBK3gB54jmOyPfxgTOq2wXGQziZepQs",
         "HOST": "divardb.elyashedayat10.svc",
         "PORT": "5432",
     }
